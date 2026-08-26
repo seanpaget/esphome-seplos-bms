@@ -1,5 +1,6 @@
 substitutions:
-  name: seplos-bms
+  name: esphome-seplos-bms
+  friendly_name: esphome-seplos-bms
   battery_bank0: "${name} bank 0"
   battery_bank1: "${name} bank 1"
   battery_bank2: "${name} bank 2"
@@ -22,8 +23,10 @@ esphome:
     - id: device2
       name: "${battery_bank2}"
 
-esp8266:
-  board: d1_mini
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
 
 wifi:
   ssid: !secret wifi_ssid
@@ -38,13 +41,13 @@ logger:
 
 # If you use Home Assistant please remove this `mqtt` section and uncomment the `api` component!
 # The native API has many advantages over MQTT: https://esphome.io/components/api.html#advantages-over-mqtt
-mqtt:
-  broker: !secret mqtt_host
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  id: mqtt_client
+# mqtt:
+#  broker: !secret mqtt_host
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  id: mqtt_client
 
-# api:
+api:
 
 uart:
   - id: uart_0
